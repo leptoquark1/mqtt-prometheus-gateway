@@ -7,11 +7,15 @@ import setupMQTTClient from "./MQTTClient"
 import { setupServer, defineRouter, Logger } from "useful-typescript-functions"
 
 async function setup() {
-  const config = await readConfig()
-  const logger = Logger()
-  logger.setLogLevel(config.logLevel || "info")
-  setupMQTTClient(config.metrics, actualMqtt, logger)
+  const config = await readConfig();
+  const logger = Logger();
+
+  logger.setLogLevel(config.logLevel || "info");
+
+  setupMQTTClient(config.metrics, actualMqtt, logger);
+
   setupServer({
+    port:  Number.parseInt(process.env.MPG_LISTEN_PORT || process.env.HTTP_PORT || "8051"),
     routers: [
       defineRouter("/metrics", "metrics").get("/", () => getMetrics(config.metrics)),
     ],

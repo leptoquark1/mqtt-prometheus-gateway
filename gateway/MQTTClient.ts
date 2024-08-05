@@ -27,10 +27,10 @@ export default function (
   mqtt: MQTT = actualMqtt,
   logger: Logger = console
 ) {
-  const user = process.env.MQTT_USER
-  const pwd = process.env.MQTT_PASSWORD
-  const brokerName = process.env.MQTT_BROKER || "localhost"
-  const port = process.env.MQTT_PORT || "1883"
+  const user = process.env.MPG_MQTT_USER || process.env.MQTT_USER;
+  const pwd = process.env.MPG_MQTT_PASSWORD || process.env.MQTT_PASSWORD;
+  const brokerName = process.env.MPG_MQTT_BROKER || process.env.MQTT_BROKER || "localhost";
+  const port = process.env.MPG_MQTT_PORT || process.env.MQTT_PORT || "1883";
   const auth = user && pwd ? `${user}:${pwd}@` : ""
 
   const client = mqtt.connect(`mqtt://${auth}${brokerName}:${port}`)

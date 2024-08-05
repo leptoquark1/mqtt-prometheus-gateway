@@ -28,10 +28,10 @@ const config: MetricsConfiguration[] = [
   },
 ]
 
-process.env.MQTT_BROKER = "my-broker.localhost"
-process.env.MQTT_PORT = "1234"
-process.env.MQTT_USER = "my-user"
-process.env.MQTT_PASSWORD = "my-pwd"
+process.env.MPG_MQTT_BROKER = "my-broker.localhost";
+process.env.MPG_MQTT_PORT = "1234";
+process.env.MPG_MQTT_USER = "my-user";
+process.env.MPG_MQTT_PASSWORD = "my-pwd";
 
 function getHandler<T>(which: string) {
   return on.mock.calls.find((c) => c[0] === which)[1] as T

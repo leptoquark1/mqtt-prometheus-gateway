@@ -4,6 +4,7 @@ services:
     image: node:18-alpine
     volumes:
       - ./:/app
+      - ./config.yaml:/etc/mqtt-prometheus-gateway/config.yaml
     working_dir: /app
     command:
       - node
